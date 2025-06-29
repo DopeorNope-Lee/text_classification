@@ -1,0 +1,2 @@
+python src/inference.py --model_name gpt2 --lora_path /data/SIML/sy/group_theory/project1/models/checkpoints/gpt2_probe_lora/checkpoint-250 --text "계좌에서 돈이 빠져나갔어요" --num_labels 3
+# python src/inference.py --model_name "skt/kobert-base-v1" --lora_path /data/SIML/sy/group_theory/project1/models/checkpoints/kobert_lora/checkpoint-237 --text "계좌에서 돈이 빠져나갔어요" --num_labels 3
