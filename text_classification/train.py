@@ -15,12 +15,13 @@
 - 모델 저장
 - 성능 평가
 """
-
+import os
+os.environ['CUDA_VISIBLE_DEVICES'] = '3'
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
 from transformers import Trainer, TrainingArguments, DataCollatorWithPadding
-import os
+
 from pathlib import Path
 
 # 프로젝트 모듈들 임포트
@@ -190,9 +191,9 @@ def main():
     tokenized_dataset, label2id = get_dataset(tokenizer, config.max_length)
     
     # 데이터로더 생성
-    train_loader = DataLoader(tokenized_dataset["train"], batch_size=16, shuffle=True)
-    val_loader = DataLoader(tokenized_dataset["validation"], batch_size=16, shuffle=False)
-    test_loader = DataLoader(tokenized_dataset["test"], batch_size=16, shuffle=False)
+    train_loader = DataLoader(tokenized_dataset["train"], batch_size=16, shuffle=True, collate_fn=SmartCollator(tokenizer))
+    val_loader = DataLoader(tokenized_dataset["validation"], batch_size=16, shuffle=False, collate_fn=SmartCollator(tokenizer))
+    test_loader = DataLoader(tokenized_dataset["test"], batch_size=16, shuffle=False, collate_fn=SmartCollator(tokenizer))
     
     # 5. 모델 훈련
     trained_model, history = train_model(
