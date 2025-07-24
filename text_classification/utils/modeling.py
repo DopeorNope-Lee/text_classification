@@ -66,7 +66,7 @@ def build_model(config: ModelConfig):
     print(f"모델 생성 중: {config.pretrained_model_name}")
     
     # 1. 토크나이저 로딩
-    tokenizer = AutoTokenizer.from_pretrained(config.pretrained_model_name, use_fast=False)
+    tokenizer = AutoTokenizer.from_pretrained(config.pretrained_model_name, use_fast=False, trust_remote_code=True)
     
     # 2. GPT-2 모델의 경우 pad 토큰 추가
     added_pad = False
@@ -78,7 +78,8 @@ def build_model(config: ModelConfig):
     # 3. 모델 설정 및 로딩
     model_config = AutoConfig.from_pretrained(
         config.pretrained_model_name, 
-        num_labels=config.num_labels
+        num_labels=config.num_labels,
+        trust_remote_code=True
     )
     
     model = AutoModelForSequenceClassification.from_pretrained(
@@ -160,7 +161,8 @@ def load_model(model_path: str, model_name: str, num_labels: int, use_lora: bool
     # 기본 모델 로딩
     model = AutoModelForSequenceClassification.from_pretrained(
         model_name, 
-        num_labels=num_labels
+        num_labels=num_labels,
+        trust_remote_code=True
     )
     
     # LoRA 모델인 경우
