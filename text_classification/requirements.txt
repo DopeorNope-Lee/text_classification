@@ -1,30 +1,17 @@
-# Text Classification Educational Project - Required Libraries
-# ========================================================
-
-# Deep Learning Framework
-torch>=2.0.0
-
-# Transformer Models
-transformers>=4.30.0
-
-# Data Processing
-datasets>=2.12.0
-
-# Efficient Fine-tuning
-peft>=0.4.0
-
-# Acceleration
-accelerate>=0.20.0
-
-# Data Analysis (Optional - for visualization)
-pandas>=1.5.0
-
-# Machine Learning Metrics (Optional - for evaluation)
-scikit-learn>=1.2.0
-
-# Visualization (Optional - for confusion matrix etc.)
-matplotlib>=3.6.0
-seaborn>=0.12.0
-
-# 4-bit Quantization (Optional)
-# bitsandbytes>=0.39.0 
+# python 3.11.8
+torch>=2.6.0
+transformers==4.53.0
+datasets==3.6.0
+pandas==2.3.0
+numpy==1.24.3
+peft==0.15.2
+bitsandbytes==0.46.0
+scikit-learn==1.7.0
+evaluate==0.4.4
+protobuf==3.20.3
+pydantic==2.11.7
+tqdm>=4.66.4
+sentencepiece
+rouge_score
+bert_score
+trl==0.19.1
