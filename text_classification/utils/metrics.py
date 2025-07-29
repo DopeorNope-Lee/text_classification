@@ -12,6 +12,7 @@
 - 분류 리포트 생성
 """
 
+import torch
 import numpy as np
 from typing import Dict, List, Tuple, Any
 from sklearn.metrics import accuracy_score, f1_score, confusion_matrix, classification_report
