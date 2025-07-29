@@ -21,6 +21,8 @@ import time
 import os
 from pathlib import Path
 from typing import Dict, Any
+# 모델 크기 측정할 때 필요
+import sys
 
 # 프로젝트 모듈들 임포트
 from utils.modeling import load_model
@@ -42,21 +44,25 @@ def measure_model_size(model, model_name: str = "모델") -> Dict[str, Any]:
     
     # 모델 상태 딕셔너리 크기 계산
     state_dict = model.state_dict()
-    total_size = 0
-    
+    total_size_bytes = 0
+    # NOTE: 양자화하면 state_dict의 형태가 변해서 다음과 같이 계산해야 됨
     for param_name, param in state_dict.items():
-        param_size = param.numel() * param.element_size()
-        total_size += param_size
-    
+          # 1. 값이 텐서인 경우 (압축된 가중치, bias, LayerNorm 등)
+          if isinstance(param, torch.Tensor):
+              total_size_bytes += param.numel() * param.element_size()
+          # 2. 값이 텐서가 아닌 경우 (scale, zero_point 등 메타데이터)
+          else:
+              total_size_bytes += sys.getsizeof(param)
+  
     # MB로 변환
-    size_mb = total_size / (1024 * 1024)
+    size_mb = total_size_bytes / (1024 * 1024)
     
     size_info = {
         'model_name': model_name,
         'total_params': total_params,
         'trainable_params': trainable_params,
         'size_mb': size_mb,
-        'total_size_bytes': total_size
+        'total_size_bytes': total_size_bytes
     }
     
     print(f"{model_name} 크기 정보:")
@@ -279,7 +285,8 @@ def main():
     print("="*50)
     print("동적 양자화 실행")
     print("="*50)
-    
+    # 동적 양자화전에 추론 시 forward 호출을 위해 `.merge_and_unload()`.
+    original_model.merge_and_unload()
     quantized_model = apply_dynamic_quantization(original_model)
     
     # 모델 비교
