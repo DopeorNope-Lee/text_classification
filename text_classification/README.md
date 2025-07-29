@@ -51,6 +51,9 @@ python setup_environment.py
 - `data/` 폴더와 샘플 파일들 (예시용)
 - `models/`, `checkpoints/`, `logs/` 폴더들
 
+위 스크립트가 실행된 후, 추가적으로 필요한 라이브러리를 설치합니다.
+`pip install -r requirements.txt`
+
 ### 2. 모델 훈련
 
 Hugging Face datasets에서 데이터를 로딩하여 모델을 훈련합니다:
