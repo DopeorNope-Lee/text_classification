@@ -38,6 +38,10 @@ text_classification/
 먼저 프로젝트 환경을 설정합니다:
 
 ```bash
+git clone https://github.com/DopeorNope-Lee/text_classification
+cd text_classifiaction
+conda create -n text_classification python=3.11.8 -y
+conda activate text_classification
 python setup_environment.py
 ```
 
