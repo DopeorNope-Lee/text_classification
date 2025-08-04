@@ -42,6 +42,7 @@ git clone https://github.com/DopeorNope-Lee/text_classification
 cd text_classifiaction
 conda create -n text_classification python=3.11.8 -y
 conda activate text_classification
+python setup_environment.py
 pip install -r requirements.txt
 ```
 
@@ -55,8 +56,6 @@ pip install -r requirements.txt
 - `data/` 폴더와 샘플 파일들 (예시용)
 - `models/`, `checkpoints/`, `logs/` 폴더들
 
-위 스크립트가 실행된 후, 추가적으로 필요한 라이브러리를 설치합니다.
-`pip install -r requirements.txt`
 
 ### 2. 모델 훈련
 
