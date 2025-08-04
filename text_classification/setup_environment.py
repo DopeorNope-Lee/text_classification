@@ -25,30 +25,6 @@ def check_python_version():
     print(f"Python 버전: {version.major}.{version.minor}.{version.micro}")
     return True
 
-def install_requirements():
-    """필요한 패키지들을 설치합니다."""
-    print("필요한 패키지 설치 중...")
-    
-    # 기본 필수 패키지들
-    packages = [
-        "torch",
-        "transformers",
-        "datasets",
-        "peft",
-        "accelerate"
-    ]
-    
-    for package in packages:
-        try:
-            print(f"설치 중: {package}")
-            subprocess.check_call([sys.executable, "-m", "pip", "install", package])
-            print(f"{package} 설치 완료")
-        except subprocess.CalledProcessError:
-            print(f"{package} 설치 실패")
-            return False
-    
-    return True
-
 def create_sample_data():
     """샘플 데이터 파일을 생성합니다."""
     print("샘플 데이터 생성 중...")
@@ -107,15 +83,10 @@ def main():
     if not check_python_version():
         return
     
-    # 2. 패키지 설치
-    if not install_requirements():
-        print("패키지 설치에 실패했습니다.")
-        return
-    
-    # 3. 디렉토리 생성
+    # 2. 디렉토리 생성
     create_directories()
     
-    # 4. 샘플 데이터 생성
+    # 3. 샘플 데이터 생성
     create_sample_data()
     
     print("=" * 50)
