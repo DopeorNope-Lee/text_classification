@@ -75,6 +75,43 @@ class TextClassificationDataset(Dataset):
             item['token_type_ids'] = encoding['token_type_ids'].flatten()
         
         return item
+    
+def load_dataset_from_local_parquet(data_dir: str):
+    """
+    로컬 디렉토리에서 Parquet 파일들을 로드하고, 레이블 정보를 생성합니다.
+    
+    Args:
+        data_dir (str): Parquet 파일들이 있는 데이터 디렉토리 경로
+                        (e.g., './customer-complaints-data/data')
+                        
+    Returns:
+        DatasetDict: 'train', 'validation', 'test' 스플릿을 포함하는 데이터셋
+        dict: label2id 매핑 딕셔너리
+    """
+    # 파일 경로 지정
+    data_files = {
+        "train": f"{data_dir}/train-00000-of-00001.parquet",
+        "validation": f"{data_dir}/validation-00000-of-00001.parquet",
+        "test": f"{data_dir}/test-00000-of-00001.parquet",
+    }
+    
+    # Parquet 파일을 로드하여 DatasetDict 생성
+    dataset = load_dataset("parquet", data_files=data_files)
+    print(f"데이터 로딩 중: {data_dir}") 
+    # label 컬럼에서 고유한 레이블 목록 추출 및 정렬
+    # 'label' 컬럼이 문자열이라고 가정. 만약 정수형이라면 .features['label'].names를 사용.
+    labels = dataset["train"].unique("label")
+    labels.sort() # 일관된 순서를 위해 정렬
+    
+    # label2id, id2label 딕셔너리 생성
+    label2id = {label: i for i, label in enumerate(labels)}
+    # id2label = {i: label for i, label in enumerate(labels)} # 필요하다면 이것도 생성
+    
+
+    print(f"데이터 로딩 완료: {len(dataset['train'])}개 훈련 데이터")
+    print(f"레이블: {label2id}")
+    
+    return dataset, label2id
 
 def load_dataset_from_hf(dataset_name: str = "hblim/customer-complaints") -> Tuple[DatasetDict, Dict[str, int]]:
     """
@@ -137,7 +174,7 @@ def tokenize_dataset(dataset: DatasetDict, tokenizer, max_length: int = 128) -> 
     print("토크나이징 완료")
     return tokenized_dataset
 
-def get_dataset(tokenizer, max_length: int = 128, dataset_name: str = "hblim/customer-complaints"):
+def get_dataset(tokenizer, max_length: int = 128, data_dir: str = "./data"):
     """
     토크나이징된 데이터셋과 레이블 매핑을 반환합니다.
     
@@ -151,8 +188,7 @@ def get_dataset(tokenizer, max_length: int = 128, dataset_name: str = "hblim/cus
         label2id: 레이블 매핑 딕셔너리
     """
     # 데이터 로딩
-    dataset, label2id = load_dataset_from_hf(dataset_name)
-    
+    dataset, label2id = load_dataset_from_local_parquet(data_dir)
     # 토크나이징
     tokenized_dataset = tokenize_dataset(dataset, tokenizer, max_length)
     

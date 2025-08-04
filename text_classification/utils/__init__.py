@@ -21,6 +21,7 @@ from .data import (
     load_sample_data,
     get_dataset,
     load_dataset_from_hf,
+    load_dataset_from_local_parquet,
     tokenize_dataset
 )
 
@@ -62,6 +63,7 @@ __all__ = [
     "load_sample_data",
     "get_dataset",
     "load_dataset_from_hf",
+    "load_dataset_from_local_parquet"
     "tokenize_dataset",
     
     # Modeling utilities
