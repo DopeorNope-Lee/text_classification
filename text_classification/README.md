@@ -42,7 +42,7 @@ git clone https://github.com/DopeorNope-Lee/text_classification
 cd text_classifiaction
 conda create -n text_classification python=3.11.8 -y
 conda activate text_classification
-python setup_environment.py
+pip install -r requirements.txt
 ```
 
 이 스크립트는 다음을 수행합니다:
