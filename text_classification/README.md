@@ -14,7 +14,7 @@
 
 ```
 text_classification/
-├── setup_environment.py    # 환경 설정 스크립트
+├── setup.py    # 환경 설정 스크립트
 ├── train.py               # 모델 훈련 스크립트
 ├── inference.py           # 모델 추론 스크립트
 ├── quantization.py        # 모델 양자화 스크립트
@@ -40,7 +40,7 @@ text_classification/
 
 2. conda 가상환경을 만듭니다.
 
-3. `pip install -r requirements.txt`와 `python setup_environment.py` 스크립트로 기본 환경을 설정합니다.
+3. `pip install -r requirements.txt`와 `python setup.py` 스크립트로 기본 환경을 설정합니다.
     - `pip install -r requirements.txt`: 라이브러리 설치
     - `python setup_environment.py`: 폴더 생성 및 환경 셋팅
 ```bash
