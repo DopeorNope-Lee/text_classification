@@ -16,7 +16,7 @@
 - 성능 평가
 """
 import os
-os.environ['CUDA_VISIBLE_DEVICES'] = '3'
+os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
