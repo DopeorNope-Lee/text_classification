@@ -47,7 +47,7 @@ text_classification/
 cd text_classifiaction
 conda create -n text_classification python=3.11.8 -y
 conda activate text_classification
-python setup_environment.py
+python setup.py
 pip install -r requirements.txt
 ```
 
