@@ -36,7 +36,13 @@ text_classification/
 ### 1. 환경 설정
 
 먼저 프로젝트 환경을 설정합니다:
-`cd 커맨드 사용 시, 본인이 압축을 푼 디렉토리로 이동해야 합니다.`
+1. `cd 커맨드 사용 시, 본인이 압축을 푼 디렉토리로 이동해야 합니다.`
+
+2. conda 가상환경을 만듭니다.
+
+3. `pip install -r requirements.txt`와 `python setup_environment.py` 스크립트로 기본 환경을 설정합니다.
+    - `pip install -r requirements.txt`: 라이브러리 설치
+    - `python setup_environment.py`: 폴더 생성 및 환경 셋팅
 ```bash
 cd text_classifiaction
 conda create -n text_classification python=3.11.8 -y
