@@ -42,7 +42,7 @@ text_classification/
 
 3. `pip install -r requirements.txt`와 `python setup.py` 스크립트로 기본 환경을 설정합니다.
     - `pip install -r requirements.txt`: 라이브러리 설치
-    - `python setup_environment.py`: 폴더 생성 및 환경 셋팅
+    - `python setup.py`: 폴더 생성 및 환경 셋팅
 ```bash
 cd text_classifiaction
 conda create -n text_classification python=3.11.8 -y
