@@ -318,7 +318,7 @@ def main():
         quantized_4bit_save_path = "models/quantized_4bit"
         save_quantized_model(quantized_4bit, quantized_4bit_save_path, "4비트 양자화 모델")
     
-    print("양자화 완료!")
+    print(f"양자화 완료! 모델이 '{quantized_4bit_save_path}'에 저장되었습니다.")
     print("다음 단계:")
     print("1. inference.py를 실행하여 양자화된 모델로 추론해보세요")
     print("2. 성능 차이를 비교해보세요")
