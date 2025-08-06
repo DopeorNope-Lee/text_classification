@@ -36,9 +36,8 @@ text_classification/
 ### 1. 환경 설정
 
 먼저 프로젝트 환경을 설정합니다:
-
+`cd 커맨드 사용 시, 본인이 압축을 푼 디렉토리로 이동해야 합니다.`
 ```bash
-git clone https://github.com/DopeorNope-Lee/text_classification
 cd text_classifiaction
 conda create -n text_classification python=3.11.8 -y
 conda activate text_classification
