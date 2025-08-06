@@ -199,8 +199,14 @@ def compare_models(original_model, quantized_model, test_input):
     
     # 속도 비교
     print("속도 비교:")
-    original_speed = measure_inference_speed(original_model, test_input, model_name="원본 모델")
-    quantized_speed = measure_inference_speed(quantized_model, test_input, model_name="양자화 모델")
+    device_orig = next(original_model.parameters()).device
+    device_quant = next(quantized_model.parameters()).device
+
+    test_input_orig = {k: v.to(device_orig) for k, v in test_input.items()}
+    test_input_quant = {k: v.to(device_quant) for k, v in test_input.items()}
+    
+    original_speed = measure_inference_speed(original_model, test_input_orig, model_name="원본 모델")
+    quantized_speed = measure_inference_speed(quantized_model, test_input_quant, model_name="양자화 모델")
     
     speed_improvement = (quantized_speed['throughput'] - original_speed['throughput']) / original_speed['throughput'] * 100
     print(f"  속도 향상: {speed_improvement:.1f}%")
@@ -212,14 +218,14 @@ def compare_models(original_model, quantized_model, test_input):
     quantized_model.eval()
     
     with torch.no_grad():
-        original_output = original_model(**test_input)
-        quantized_output = quantized_model(**test_input)
+        original_output = original_model(**test_input_orig)
+        quantized_output = quantized_model(**test_input_quant)
         
         original_probs = torch.softmax(original_output.logits, dim=-1)
         quantized_probs = torch.softmax(quantized_output.logits, dim=-1)
         
         # 확률 차이 계산
-        prob_diff = torch.abs(original_probs - quantized_probs).mean().item()
+        prob_diff = torch.abs(original_probs.cpu() - quantized_probs.cpu()).mean().item()
         print(f"  평균 확률 차이: {prob_diff:.6f}")
 
 def save_quantized_model(model, save_path: str, model_name: str):
