@@ -1,12 +1,12 @@
 """
-환경 설정 파일 (setup_environment.py)
+환경 설정 파일 (setup.py)
 ====================================
 
 이 파일은 Windows 11 환경에서 텍스트 분류 프로젝트를 위한 환경을 설정합니다.
 학생들이 처음 프로젝트를 시작할 때 이 파일을 실행하여 필요한 환경을 구성할 수 있습니다.
 
 사용법:
-    python setup_environment.py
+    python setup.py
 """
 
 import subprocess
