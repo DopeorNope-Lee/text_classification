@@ -162,7 +162,7 @@ def apply_4bit_quantization(model_path: str, model_name: str, num_labels: int):
         # 4비트로 모델 로딩
         quantized_model = AutoModelForSequenceClassification.from_pretrained(
             model_path,
-            num_labels=num_labels
+            num_labels=num_labels,
             load_in_4bit=True,
             device_map="auto",
             torch_dtype=torch.float16
