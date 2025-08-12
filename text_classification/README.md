@@ -135,8 +135,8 @@ python quantization.py
 ## 사용된 기술
 
 ### 1. 사전 훈련된 모델
-- **KoBERT**: 한국어에 특화된 BERT 모델
-- **모델**: `skt/kobert-base-v1`
+- **BERT**: BERT 모델
+- **모델**: `google-bert/bert-base-uncased`
 
 ### 2. 효율적 파인튜닝
 - **LoRA (Low-Rank Adaptation)**: 적은 파라미터로 모델 조정
