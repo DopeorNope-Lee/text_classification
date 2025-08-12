@@ -172,7 +172,7 @@ def main():
     
     # 2. 모델 설정
     config = ModelConfig(
-        pretrained_model_name="bert-base-uncased",  # 한국어 BERT 모델
+        pretrained_model_name="bert-base-uncased", 
         num_labels=3,  # billing, delivery, product
         use_lora=True,  # LoRA 사용
         lora_r=8,
