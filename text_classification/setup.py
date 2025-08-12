@@ -25,41 +25,6 @@ def check_python_version():
     print(f"Python 버전: {version.major}.{version.minor}.{version.micro}")
     return True
 
-def create_sample_data():
-    """샘플 데이터 파일을 생성합니다."""
-    print("샘플 데이터 생성 중...")
-    
-    data_dir = Path("data")
-    data_dir.mkdir(exist_ok=True)
-    
-    # 샘플 데이터셋 생성
-    sample_data = """text,label
-안녕하세요 고객센터입니다,neutral
-이 제품 정말 최고예요!,positive
-서비스가 너무 나빠요,negative
-배송이 빨라서 좋았어요,positive
-품질이 기대에 못 미쳐요,negative
-친절한 응대 감사합니다,positive
-환불하고 싶어요,negative
-추천하고 싶은 제품입니다,positive
-불만이 있어요,negative
-만족스러운 구매였습니다,positive"""
-    
-    with open(data_dir / "sample_dataset.csv", "w", encoding="utf-8") as f:
-        f.write(sample_data)
-    
-    # 테스트용 텍스트 파일 생성
-    test_texts = """안녕하세요
-이 제품은 정말 좋아요
-서비스가 별로예요
-배송이 빨라요
-품질이 나빠요"""
-    
-    with open(data_dir / "test_texts.txt", "w", encoding="utf-8") as f:
-        f.write(test_texts)
-    
-    print("샘플 데이터 생성 완료")
-
 def create_directories():
     """필요한 디렉토리들을 생성합니다."""
     print("디렉토리 생성 중...")
@@ -85,9 +50,6 @@ def main():
     
     # 2. 디렉토리 생성
     create_directories()
-    
-    # 3. 샘플 데이터 생성
-    create_sample_data()
     
     print("=" * 50)
     print("환경 설정이 완료되었습니다!")
