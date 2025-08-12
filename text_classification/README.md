@@ -151,7 +151,6 @@ python quantization.py
 ### 모델 성능
 - **정확도**: 80-90% (샘플 데이터 기준)
 - **F1 점수**: 0.8-0.9
-- **훈련 시간**: 1-3분 (CPU 기준)
 
 ### 모델 크기
 - **원본 모델**: ~500MB
@@ -194,21 +193,7 @@ config = ModelConfig(
 )
 ```
 
-### 2. 다른 데이터셋 사용
-`utils/data.py`에서 `get_dataset` 함수의 `dataset_name` 파라미터를 수정하여 다른 Hugging Face 데이터셋을 사용할 수 있습니다:
-
-```python
-# 다른 데이터셋 사용 예시
-tokenized_dataset, label2id = get_dataset(
-    tokenizer, 
-    max_length=128, 
-    dataset_name="your-dataset-name"  # 원하는 데이터셋 이름
-)
-```
-
-현재 사용 중인 데이터셋: `hblim/customer-complaints` (고객 불만 분류)
-
-### 3. 하이퍼파라미터 조정
+### 2. 하이퍼파라미터 조정
 `train.py`에서 다음 파라미터들을 조정할 수 있습니다:
 
 ```python
@@ -251,5 +236,3 @@ max_length=256        # 최대 시퀀스 길이
 - [KLUE 벤치마크](https://klue-benchmark.com/)
 
 ---
-
-**즐거운 학습 되세요!** 
