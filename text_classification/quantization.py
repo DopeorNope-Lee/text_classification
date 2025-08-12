@@ -308,7 +308,7 @@ def main():
     print("4비트 양자화 실행 (선택사항)")
     print("="*50)
     
-    quantized_4bit = apply_4bit_quantization(model_path, "skt/kobert-base-v1", 3)
+    quantized_4bit = apply_4bit_quantization(model_path, "bert-base-uncased", 3)
     
     if quantized_4bit is not None:
         # 4비트 모델과 비교
