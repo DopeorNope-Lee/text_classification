@@ -267,7 +267,7 @@ def main():
     print("원본 모델 로딩 중...")
     original_model, tokenizer = load_model(
         model_path=model_path,
-        model_name="skt/kobert-base-v1",
+        model_name="bert-base-uncased",
         num_labels=3,
         use_lora=True
     )
