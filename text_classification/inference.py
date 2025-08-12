@@ -189,14 +189,14 @@ def load_test_texts() -> List[str]:
     """
     # 샘플 테스트 텍스트들
     test_texts = [
-        "안녕하세요",
-        "이 제품은 정말 좋아요",
-        "서비스가 별로예요",
-        "배송이 빨라요",
-        "품질이 나빠요",
-        "친절한 응대 감사합니다",
-        "환불하고 싶어요",
-        "추천하고 싶은 제품입니다"
+        "This isn't the price I was quoted.",
+        "The tracking says delivered, but it's not here.",
+        "The item won't turn on.",
+        "I cancelled this subscription last month.",
+        "The box arrived completely crushed.",
+        "I ordered a blue one, not a red one.",
+        "Why did my monthly bill go up?",
+        "It was left at the wrong apartment."
     ]
     
     return test_texts
