@@ -172,8 +172,8 @@ def main():
     
     # 2. 모델 설정
     config = ModelConfig(
-        pretrained_model_name="skt/kobert-base-v1",  # 한국어 BERT 모델
-        num_labels=3,  # positive, negative, neutral
+        pretrained_model_name="bert-base-uncased",  # 한국어 BERT 모델
+        num_labels=3,  # billing, delivery, product
         use_lora=True,  # LoRA 사용
         lora_r=8,
         max_length=128
@@ -198,7 +198,7 @@ def main():
     # 5. 모델 훈련
     trained_model, history = train_model(
         model, train_loader, val_loader, 
-        num_epochs=3, learning_rate=2e-5, device=device
+        num_epochs=3, learning_rate=2e-5, device=device # 효과적인 학습을 위해 수정 필요!
     )
     
     # 6. 모델 평가
