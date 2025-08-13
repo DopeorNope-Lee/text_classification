@@ -209,7 +209,7 @@ def main():
     print("=" * 50)
     
     # 모델 경로 설정
-    model_path = "models/text_classifier"
+    model_path = "models/text_classifier" # 양자화 모델 활용 시 해당 경로를 수정해야 합니다.
     
     # 모델이 존재하는지 확인
     if not os.path.exists(model_path):
