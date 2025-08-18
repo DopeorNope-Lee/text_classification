@@ -18,7 +18,6 @@ from .data import (
     create_label_mapping,
     prepare_dataset,
     create_dataloaders,
-    load_sample_data,
     get_dataset,
     load_dataset_from_hf,
     load_dataset_from_local_parquet,
@@ -51,7 +50,7 @@ from .metrics import (
 
 __version__ = "1.0.0"
 __author__ = "교육용 텍스트 분류 프로젝트"
-__description__ = "한국어 텍스트 분류를 위한 교육용 유틸리티 패키지"
+__description__ = "텍스트 분류를 위한 교육용 유틸리티 패키지"
 
 __all__ = [
     # Data utilities
@@ -60,7 +59,6 @@ __all__ = [
     "create_label_mapping",
     "prepare_dataset",
     "create_dataloaders",
-    "load_sample_data",
     "get_dataset",
     "load_dataset_from_hf",
     "load_dataset_from_local_parquet"
