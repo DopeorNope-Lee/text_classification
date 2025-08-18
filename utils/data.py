@@ -311,32 +311,3 @@ def create_dataloaders(train_dataset, val_dataset, test_dataset,
     
     print(f"데이터로더 생성 완료 (배치 크기: {batch_size})")
     return train_loader, val_loader, test_loader
-
-def load_sample_data() -> Tuple[List[str], List[str]]:
-    """
-    샘플 데이터를 로딩합니다 (교육용).
-    
-    Returns:
-        texts: 샘플 텍스트 리스트
-        labels: 샘플 레이블 리스트
-    """
-    sample_texts = [
-        "안녕하세요 고객센터입니다",
-        "이 제품 정말 최고예요!",
-        "서비스가 너무 나빠요",
-        "배송이 빨라서 좋았어요",
-        "품질이 기대에 못 미쳐요",
-        "친절한 응대 감사합니다",
-        "환불하고 싶어요",
-        "추천하고 싶은 제품입니다",
-        "불만이 있어요",
-        "만족스러운 구매였습니다"
-    ]
-    
-    sample_labels = [
-        "neutral", "positive", "negative", "positive", 
-        "negative", "positive", "negative", "positive", 
-        "negative", "positive"
-    ]
-    
-    return sample_texts, sample_labels 

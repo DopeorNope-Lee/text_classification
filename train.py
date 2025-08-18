@@ -25,7 +25,7 @@ from transformers import Trainer, TrainingArguments, DataCollatorWithPadding
 from pathlib import Path
 
 # 프로젝트 모듈들 임포트
-from utils.data import get_dataset, prepare_dataset, create_dataloaders, load_sample_data
+from utils.data import get_dataset
 from utils.modeling import ModelConfig, build_model, get_model_info, save_model
 from utils.metrics import evaluate_model, print_metrics, save_metrics
 
