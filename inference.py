@@ -23,7 +23,6 @@ from typing import List, Dict, Any
 
 # 프로젝트 모듈들 임포트
 from utils.modeling import load_model
-from utils.data import load_sample_data
 
 class TextClassifier:
     """
