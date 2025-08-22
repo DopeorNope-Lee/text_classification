@@ -201,7 +201,7 @@ def main():
         use_lora=True
     )
     
-    test_text = "이 제품은 정말 좋아요"
+    test_text = "I love this product!"
     test_input = tokenizer(
         test_text,
         truncation=True,
@@ -220,22 +220,17 @@ def main():
     print("동적 양자화 실행")
     print("="*50)
     
-    # --- FIX: "Laundering" the model to create a clean state_dict ---
-    print("LoRA 어댑터를 병합하여 깨끗한 상태의 모델을 생성합니다...")
     merged_model = lora_model.merge_and_unload()
     merged_state_dict = merged_model.state_dict()
     
-    # Create a completely fresh model instance
-    clean_model = AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=num_labels)
-    clean_model.load_state_dict(merged_state_dict)
-    print("깨끗한 모델 생성 완료.")
+    original_model = AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=num_labels)
+    original_model.load_state_dict(merged_state_dict)
     
-    # Now, quantize the clean model
-    quantized_dynamic_model = apply_dynamic_quantization(clean_model)
+    quantized_dynamic_model = apply_dynamic_quantization(original_model)
     
-    compare_models(clean_model, quantized_dynamic_model, test_input)
+    compare_models(original_model, quantized_dynamic_model, test_input)
     
-    # Save the correctly quantized model and its assets
+
     quantized_dynamic_save_path = "models/quantized_dynamic"
     print(f"동적 양자화 모델 저장 중: {quantized_dynamic_save_path}")
     os.makedirs(quantized_dynamic_save_path, exist_ok=True)
@@ -254,8 +249,8 @@ def main():
     quantized_4bit_model = apply_4bit_quantization(model_path, model_name, num_labels)
     
     if quantized_4bit_model is not None:
-        compare_models(clean_model, quantized_4bit_model, test_input)
-        
+        compare_models(original_model, quantized_4bit_model, test_input)
+
         quantized_4bit_save_path = "models/quantized_4bit"
         print(f"4비트 양자화 모델 저장 중: {quantized_4bit_save_path}")
         quantized_4bit_model.save_pretrained(quantized_4bit_save_path)
